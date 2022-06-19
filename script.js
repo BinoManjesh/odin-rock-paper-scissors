@@ -10,20 +10,24 @@ function computerPlay() {
     }
 }
 
-function playRound(playerSelection, computerSelection) {
+function getWinner(playerSelection, computerSelection) {
     let capitalize = str => str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
     playerSelection = capitalize(playerSelection);
     computerSelection = capitalize(computerSelection);
+    let isValid = str => str === "Rock" || str === "Paper" || str === "Scissors";
+    if (!isValid(playerSelection) || !isValid(computerSelection)) {
+        return undefined;
+    }
     if (playerSelection === computerSelection) {
-        return `It's a Tie! ${playerSelection} ties ${computerSelection}`
+        return null;
     }
     let playerWon = 
         (playerSelection === "Rock" && computerSelection === "Scissors") ||
         (playerSelection === "Paper" && computerSelection === "Rock") ||
         (playerSelection === "Scissors" && computerSelection === "Paper");
     if (playerWon) {
-        return `You Won! ${playerSelection} beats ${computerSelection}`;
+        return "player";
     } else {
-        return `You Lost! ${computerSelection} beats ${playerSelection}`;
+        return "computer";
     }
 }
