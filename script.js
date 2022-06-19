@@ -26,8 +26,38 @@ function getWinner(playerSelection, computerSelection) {
         (playerSelection === "Paper" && computerSelection === "Rock") ||
         (playerSelection === "Scissors" && computerSelection === "Paper");
     if (playerWon) {
-        return "player";
+        return "Player";
     } else {
-        return "computer";
+        return "Computer";
     }
 }
+
+let playerScore = 0;
+let computerScore = 0;
+const ROUNDS = 5;
+for (let i = 0; i < ROUNDS; ++i) {
+    playerSelection = prompt("Enter Rock, Paper or Scissors", "");
+    computerSelection = computerPlay();
+    let winner = getWinner(playerSelection, computerSelection);
+    switch(winner) {
+        case "Player":
+            ++playerScore;
+            console.log(`You won! ${playerSelection} beats ${computerSelection}`);
+            break;
+        case "Computer":
+            ++computerScore;
+            console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+            break;
+        case null:
+            console.log(`It's a tie! ${playerSelection} ties ${computerSelection}`);
+            break;
+    }
+}
+if (playerScore > computerScore) {
+    console.log("You won the game!");
+} else if (computerScore > playerScore) {
+    console.log("You lost the game!");
+} else {
+    console.log("The game is Tied!");
+}
+console.log(`Your score: ${playerScore} Computer's Score: ${computerScore}`)
