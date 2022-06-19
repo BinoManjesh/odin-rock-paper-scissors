@@ -10,8 +10,11 @@ function computerPlay() {
     }
 }
 
+function capitalize(str) {
+    return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 function getWinner(playerSelection, computerSelection) {
-    let capitalize = str => str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
     playerSelection = capitalize(playerSelection);
     computerSelection = capitalize(computerSelection);
     let isValid = str => str === "Rock" || str === "Paper" || str === "Scissors";
@@ -38,6 +41,8 @@ const ROUNDS = 5;
 for (let i = 0; i < ROUNDS; ++i) {
     playerSelection = prompt("Enter Rock, Paper or Scissors", "");
     computerSelection = computerPlay();
+    playerSelection = capitalize(playerSelection);
+    computerSelection = capitalize(computerSelection);
     let winner = getWinner(playerSelection, computerSelection);
     switch(winner) {
         case "Player":
