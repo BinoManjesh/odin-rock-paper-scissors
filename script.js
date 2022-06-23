@@ -27,23 +27,28 @@ function getWinner(playerSelection, computerSelection) {
 
 let playerScore = 0;
 let computerScore = 0;
+let scoreDisplay = document.querySelector("h2");
+let resultDisplay = document.querySelector("h3");
 
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
     let winner = getWinner(playerSelection, computerSelection);
+    let resultText;
     switch(winner) {
         case "Player":
             ++playerScore;
-            console.log(`You won! ${playerSelection} beats ${computerSelection}`);
+            resultText = `You won! ${playerSelection} beats ${computerSelection}`;
             break;
         case "Computer":
             ++computerScore;
-            console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+            resultText = `You lost! ${computerSelection} beats ${playerSelection}`;
             break;
         case null:
-            console.log(`It's a tie! ${playerSelection} ties ${computerSelection}`);
+            resultText = `It's a tie! ${playerSelection} ties ${computerSelection}`;
             break;
     }
+    scoreDisplay.textContent = playerScore + " - " + computerScore;
+    resultDisplay.textContent = resultText;
 }
 
 function rockClick() {
