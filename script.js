@@ -29,8 +29,12 @@ let playerScore = 0;
 let computerScore = 0;
 let scoreDisplay = document.querySelector("h2");
 let resultDisplay = document.querySelector("h3");
+let gameRunning = true;
 
 function playRound(playerSelection) {
+    if (!gameRunning) {
+        return;
+    }
     let computerSelection = computerPlay();
     let winner = getWinner(playerSelection, computerSelection);
     let resultText;
@@ -47,8 +51,17 @@ function playRound(playerSelection) {
             resultText = `It's a tie! ${playerSelection} ties ${computerSelection}`;
             break;
     }
+    if (computerScore === 5 || playerScore === 5) {
+        gameRunning = false;
+        if (computerScore === 5) {
+            resultDisplay.textContent = "You lost the game!"
+        } else {
+            resultDisplay.textContent = "You won the game!";
+        }
+    } else {
+        resultDisplay.textContent = resultText;
+    }
     scoreDisplay.textContent = playerScore + " - " + computerScore;
-    resultDisplay.textContent = resultText;
 }
 
 function rockClick() {
