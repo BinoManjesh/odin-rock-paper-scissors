@@ -10,17 +10,7 @@ function computerPlay() {
     }
 }
 
-function capitalize(str) {
-    return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
-}
-
 function getWinner(playerSelection, computerSelection) {
-    playerSelection = capitalize(playerSelection);
-    computerSelection = capitalize(computerSelection);
-    let isValid = str => str === "Rock" || str === "Paper" || str === "Scissors";
-    if (!isValid(playerSelection) || !isValid(computerSelection)) {
-        return undefined;
-    }
     if (playerSelection === computerSelection) {
         return null;
     }
